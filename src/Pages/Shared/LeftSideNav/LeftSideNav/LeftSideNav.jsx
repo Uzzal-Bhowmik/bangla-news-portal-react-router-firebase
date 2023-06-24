@@ -14,7 +14,7 @@ const LeftSideNav = () => {
 
     return (
         <div>
-            <h4 className='mb-3'>All Category</h4>
+            <h4 className='mb-3 d-none d-lg-block'>All Category</h4>
 
             <ul>
                 {

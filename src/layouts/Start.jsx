@@ -12,7 +12,7 @@ const Start = () => {
             <Header></Header>
             <Container className='my-4'>
                 <Row>
-                    <Col lg="2">
+                    <Col lg="2" className='d-none d-lg-block'>
                         <LeftSideNav></LeftSideNav>
                     </Col>
 
@@ -25,7 +25,7 @@ const Start = () => {
                     </Col>
                 </Row>
             </Container>
-            {/* <Footer></Footer> */}
+            <Footer></Footer>
         </div>
     );
 };
