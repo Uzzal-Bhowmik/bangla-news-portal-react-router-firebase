@@ -10,14 +10,13 @@ const Start = () => {
     return (
         <div>
             <Header></Header>
-            <Container>
+            <Container className='my-4'>
                 <Row>
                     <Col lg="2">
                         <LeftSideNav></LeftSideNav>
                     </Col>
 
                     <Col lg="7">
-                        <h2>I change with the link path</h2>
                         <Outlet></Outlet>
                     </Col>
 
@@ -26,7 +25,7 @@ const Start = () => {
                     </Col>
                 </Row>
             </Container>
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </div>
     );
 };
