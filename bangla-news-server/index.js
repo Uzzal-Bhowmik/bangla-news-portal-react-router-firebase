@@ -8,7 +8,7 @@ app.use(cors());
 //categories data
 const categories = require("./categories.json");
 // news data
-const news = require("./news.json");
+const allNews = require("./news.json");
 
 // get requests
 app.get("/", (req, res) => {
@@ -19,9 +19,29 @@ app.get("/news-categories", (req, res) => {
     res.send(categories);
 })
 
-app.get("/all-news", (req, res) => {
-    res.send(news);
+app.get("/category/:id", (req, res) => {
+    const id = req.params.id;
+    if (id === "0") {
+        res.send(allNews)
+    }
+    else {
+        const selectedNews = allNews.filter(news => id === news.category_id);
+        res.send(selectedNews);
+    }
 })
+
+
+
+app.get("/news", (req, res) => {
+    res.send(allNews);
+})
+
+app.get("/news/:id", (req, res) => {
+    const id = req.params.id;
+    const selectedNews = allNews.find(news => id === news._id);
+    res.send(selectedNews);
+})
+
 
 app.listen(port, () => {
     console.log("Bangla News Server is running, port: ", port);
