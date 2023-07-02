@@ -5,12 +5,19 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from '../../../../assets/react.svg';
 import LeftSideNav from '../../LeftSideNav/LeftSideNav/LeftSideNav';
 import { Link } from 'react-router-dom';
-import { Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import { useContext } from 'react';
 import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
 
 function Header() {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    // sign out method
+    const handleSignOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(e => { console.error(e) })
+    }
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
@@ -40,25 +47,40 @@ function Header() {
                     <Nav>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {user?.photoURL ?
-                                    <Image
-                                        src={user.photoURL}
-                                        style={{ height: "30px" }}
-                                        roundedCircle
-                                    ></Image>
+                                {user ?
+                                    (user?.photoURL ?
+                                        <Image
+                                            src={user.photoURL}
+                                            style={{ height: "30px" }}
+                                            roundedCircle
+                                        ></Image>
 
-                                    : <Image
-                                        src="https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg"
-                                        style={{ height: "30px" }}
-                                        roundedCircle
-                                    ></Image>
+                                        : <Image
+                                            src="https://cdn-icons-png.flaticon.com/512/20/20116.png"
+                                            style={{ height: "30px", border: "1px solid lightGrey", borderRadius: "50%", padding: "3px" }}
+                                        ></Image>
+                                    )
+                                    :
+                                    <span className='m-0 fw-bold pe-1'>Menu</span>
                                 }
                             </a>
                             <ul className="dropdown-menu" style={{ right: "0", left: "auto" }}>
                                 {user ?
-                                    <li className='fw-bold ms-3'>{user?.displayName || user?.email}</li>
+                                    <div className='px-4'>
+                                        <li className='fw-bold'>{user?.displayName || user?.email}</li>
+
+                                        <Button variant='primary mt-2' onClick={handleSignOut}>Sign Out</Button>
+                                    </div>
                                     :
-                                    <p className='ms-3 mb-0'>Please Login First!</p>
+                                    <div className='container text-center'>
+                                        <Link to="/login">
+                                            <Button variant='primary mb-3'>Login</Button>
+                                        </Link>
+                                        <br />
+                                        <Link to="/register">
+                                            <Button variant='primary'>Register</Button>
+                                        </Link>
+                                    </div>
                                 }
                             </ul>
                         </li>
