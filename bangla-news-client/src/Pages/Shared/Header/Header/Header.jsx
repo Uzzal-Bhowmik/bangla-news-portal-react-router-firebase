@@ -6,11 +6,16 @@ import logo from '../../../../assets/react.svg';
 import LeftSideNav from '../../LeftSideNav/LeftSideNav/LeftSideNav';
 import { Link } from 'react-router-dom';
 import { Button, Image } from 'react-bootstrap';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
 
 function Header() {
     const { user, logOut } = useContext(AuthContext);
+    const [currentUser, setCurrentUser] = useState({});
+
+    useEffect(() => {
+        setCurrentUser(user)
+    }, [user])
 
     // sign out method
     const handleSignOut = () => {
@@ -47,10 +52,10 @@ function Header() {
                     <Nav>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {user ?
-                                    (user?.photoURL ?
+                                {currentUser ?
+                                    (currentUser?.photoURL ?
                                         <Image
-                                            src={user.photoURL}
+                                            src={currentUser.photoURL}
                                             style={{ height: "30px" }}
                                             roundedCircle
                                         ></Image>
@@ -66,7 +71,7 @@ function Header() {
                             </a>
                             <ul className="dropdown-menu" style={{ right: "0", left: "auto" }}>
                                 {user ?
-                                    <div className='px-4'>
+                                    <div className='px-2' style={{ width: "fitContent" }}>
                                         <li className='fw-bold'>{user?.displayName || user?.email}</li>
 
                                         <Button variant='primary mt-2' onClick={handleSignOut}>Sign Out</Button>

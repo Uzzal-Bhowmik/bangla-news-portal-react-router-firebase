@@ -5,6 +5,8 @@ import Category from "../../Pages/Category/Category/Category";
 import DynamicNews from "../../Pages/DynamicNews/DynamicNews/DynamicNews";
 import Login from "../../Pages/Login/Login/Login";
 import Register from "../../Pages/Register/Register/Register";
+import PrivateRoute from "../../Pages/PrivateRoute/PrivateRoute/PrivateRoute";
+import TermsAndConditions from "../../Pages/Others/TermsAndConditions/TermsAndConditions";
 
 export const router = createBrowserRouter([
     {
@@ -24,7 +26,7 @@ export const router = createBrowserRouter([
             {
                 path: "news/:id",
                 loader: async ({ params }) => fetch(`http://localhost:5000/news/${params.id}`),
-                element: <DynamicNews />
+                element: <PrivateRoute><DynamicNews /></PrivateRoute>
             },
             {
                 path: "/login",
@@ -33,6 +35,10 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />
+            },
+            {
+                path: "/terms",
+                element: <TermsAndConditions></TermsAndConditions>
             }
         ]
     }

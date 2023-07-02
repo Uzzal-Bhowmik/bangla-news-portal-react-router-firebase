@@ -43,10 +43,10 @@ const NewsCard = ({ news }) => {
                 <Card.Text>
                     {
                         details.length > 250 && (
-                            <p>
+                            <>
                                 {details.slice(0, 250)}
                                 <Link to={`/news/${_id}`} className='text-decoration-none ms-2'>Read More...</Link>
-                            </p>
+                            </>
                         )
                     }
                 </Card.Text>

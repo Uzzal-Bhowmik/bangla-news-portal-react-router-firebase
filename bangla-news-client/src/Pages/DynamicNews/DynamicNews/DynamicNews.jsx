@@ -14,12 +14,12 @@ const DynamicNews = () => {
             <Card.Body>
                 <Card.Text className='fs-3 text-center fw-semibold'>{title}</Card.Text>
                 <Card.Text className='d-flex align-items-center justify-content-between container mt-4'>
-                    <p><span className='fw-bold'>Author: </span>{author.name}</p>
-                    <p><span className='fw-bold'>Published On: </span>{author.published_date}</p>
-                    <p>
-                        <FaStar className='text-warning me-2'></FaStar>
-                        {rating.number}
-                    </p>
+                    <span className='fw-bold d-block'>Author: </span>{author.name}
+                    <span className='fw-bold d-block'>Published On: </span>{author.published_date}
+
+                    <FaStar className='text-warning me-2'></FaStar>
+                    {rating.number}
+
                 </Card.Text>
                 <Card.Text>
                     {details}
