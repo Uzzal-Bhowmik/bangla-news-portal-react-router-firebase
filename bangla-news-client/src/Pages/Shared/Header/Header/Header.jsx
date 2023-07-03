@@ -11,11 +11,6 @@ import { AuthContext } from '../../../../contexts/AuthProvider/AuthProvider';
 
 function Header() {
     const { user, logOut } = useContext(AuthContext);
-    const [currentUser, setCurrentUser] = useState({});
-
-    useEffect(() => {
-        setCurrentUser(user)
-    }, [user])
 
     // sign out method
     const handleSignOut = () => {
@@ -52,10 +47,10 @@ function Header() {
                     <Nav>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {currentUser ?
-                                    (currentUser?.photoURL ?
+                                {user ?
+                                    (user?.photoURL ?
                                         <Image
-                                            src={currentUser.photoURL}
+                                            src={user.photoURL}
                                             style={{ height: "30px" }}
                                             roundedCircle
                                         ></Image>

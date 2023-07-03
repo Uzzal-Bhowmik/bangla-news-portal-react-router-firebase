@@ -15,17 +15,17 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                loader: async () => fetch("http://localhost:5000/news"),
+                loader: async () => fetch("https://bangla-news-server-mu.vercel.app/news"),
                 element: <Home />
             },
             {
                 path: "category/:id",
-                loader: async ({ params }) => fetch(`http://localhost:5000/category/${params.id}`),
+                loader: async ({ params }) => fetch(`https://bangla-news-server-mu.vercel.app/category/${params.id}`),
                 element: <Category />
             },
             {
                 path: "news/:id",
-                loader: async ({ params }) => fetch(`http://localhost:5000/news/${params.id}`),
+                loader: async ({ params }) => fetch(`https://bangla-news-server-mu.vercel.app/news/${params.id}`),
                 element: <PrivateRoute><DynamicNews /></PrivateRoute>
             },
             {
